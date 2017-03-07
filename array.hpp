@@ -2,13 +2,19 @@
 #define ARRAY_HPP
 
 
-#include <memory>
+
 #include <vector>
+#include "value.hpp"
 
 
-class Array : public Value, public std::vector<std::unique_ptr<Value>> {
+class Array : public Value, public std::vector<Value*> {
 public:
-  using std::vector<std::unique_ptr<Value>>::vector;
+  using std::vector<Value*>::vector;
+  inline int weight() {return 1 + size(); }
+
+  inline ~Array() { for(auto i : *this) delete i; } 
+
+
 };
 
 #endif

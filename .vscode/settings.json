@@ -2,6 +2,9 @@
     "files.associations": {
         "streambuf": "cpp",
         "iostream": "cpp",
-        "memory": "cpp"
+        "memory": "cpp",
+        "cctype": "cpp",
+        "cstring": "cpp",
+        "vector": "cpp"
     }
 }

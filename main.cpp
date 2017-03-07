@@ -1,9 +1,9 @@
 #include <iostream>
-#include <memory>
 #include <string>
 #include <cctype>
 #include <cassert>
 #include <fstream>
+#include <cstring>
 
 
 #include "value.hpp"
@@ -17,37 +17,28 @@
 
 
 
+
 int main(int argc, char* argv[]) {
   assert(argc == 2);  // Crash not-so-gracefully if incorrect number of arguments
   
-  
-  std::fstream ifs("fart.txt");
-  std::string content( (std::istreambuf_iterator<char>(ifs) ),
+
+  std::fstream fileName(argv[1]);
+  std::string content( (std::istreambuf_iterator<char>(fileName) ),
                        (std::istreambuf_iterator<char>()    ) );
 
-   std::string filename = argv[1];
-/*
-   std::ifstream redditJson;
-   redditJson.open("reddit.txt");
+  fileName.close();
 
+  std::vector<Value*> document;
 
-  // reads the whole file into a large string
-  std::string content( (std::istreambuf_iterator<char>(redditJson) ),
-                       (std::istreambuf_iterator<char>()    ) );
-*/
+  char* first = &content[0];
+  char* last = &content[content.size()];
 
-  std::cout << filename << std::endl;
-  std::cout << content << std::endl;
-  
-  auto first = content.begin();
-  auto last = content.end();
-
-  for(int i = 0; i < content.size(); ++i) {
+  while(first != last) {
+    document.push_back( parseJson(first, last) );
     
-
-
   }
-
+ 
+  // int document_weight = weight(document);
 
   return 0;
 

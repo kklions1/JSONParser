@@ -4,8 +4,9 @@
 
 class Value  {
 public:
-  virtual ~Value() = 0;
+  inline virtual ~Value() {} 
 
+  virtual int weight() = 0;
 
 };
 

@@ -3,12 +3,14 @@
 
 
 #include <string> 
+#include "value.hpp"
 
 class Number : public Value {
 public:
-    Number(std::string f) : val(f) {}
-    std::string val;
 
+    std::string val;
+    inline Number(std::string f) : val(f) {}
+    inline int weight() { return 1; }
 
 };
 
