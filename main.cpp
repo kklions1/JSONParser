@@ -15,27 +15,23 @@
 #include "string.hpp"
 #include "helper.hpp"
 
-
-
-
 int main(int argc, char* argv[]) {
   assert(argc == 2);  // Crash not-so-gracefully if incorrect number of arguments
   
-
   std::fstream fileName(argv[1]);
   std::string content( (std::istreambuf_iterator<char>(fileName) ),
                        (std::istreambuf_iterator<char>()    ) );
 
   fileName.close();
 
+  // Document thing
   std::vector<Value*> document;
 
   char* first = &content[0];
   char* last = &content[content.size()];
 
-  while(first != last) {
+  while (first != last) {
     document.push_back( parseJson(first, last) );
-    
   }
  
   // int document_weight = weight(document);
